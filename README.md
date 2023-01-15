@@ -184,6 +184,10 @@ if __name__ == '__main__':
 ---
 ## Ответ 
 
+Коллекция выложена в текущий репозиторий (my_own_collection)[https://github.com/VovetZ/my_own_collection]
+
+Далее описание выполненных действий
+
 - Подготовка 
 
 ```bash
