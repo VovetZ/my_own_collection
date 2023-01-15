@@ -308,7 +308,7 @@ Done!
     ```bash
     vim lib/ansible/modules/my_own_module.py
     ```
-- Создадим файл содержимого load.json, который будем передавать модулю
+- Подготовим load.json, который будем передавать модулю
     ```json
    {
     "ANSIBLE_MODULE_ARGS": {
@@ -322,12 +322,12 @@ Done!
    (venv) root@vkvm:/home/vk/tmp_ansible/ansible# python3 -m ansible.modules.my_own_module load.json
 {"changed": true, "invocation": {"module_args": {"path": "vk_test_file.txt", "content": "Everything is OK! Test passed."}}}
     ```
-- Файл создался
+- Файл создался!
     ```bash
   (venv) root@vkvm:/home/vk/tmp_ansible/ansible# cat vk_test_file.txt 
 Everything is OK! Test passed.
     ```
-- Создадим playbook 
+- Создадим playbook test_playbook.yml
     ```yml
 ---
 - name: Import my_own_module 
@@ -338,38 +338,65 @@ Everything is OK! Test passed.
       path: './vk_playbook_test_file.txt'
       content: "Playbook test content. OK!"
     ```
-- Проиграем playbook
+- Проиграем playbook и проверим результат 
+    ```bash
+    (venv) root@vkvm:/home/vk/tmp_ansible/ansible# ansible-playbook --connection=local --inventory localhost test_playbook.yml 
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
+you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
+source of code and can become unstable at any point.
+[WARNING]: Unable to parse /home/vk/tmp_ansible/ansible/localhost as an inventory source
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does
+not match 'all'
+
+PLAY [Import my_own_module] ********************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************
+ok: [localhost]
+
+TASK [Run my_own_module] ***********************************************************************************
+changed: [localhost]
+
+PLAY RECAP *************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+(venv) root@vkvm:/home/vk/tmp_ansible/ansible# cat vk_playbook_test_file.txt 
+Playbook test content. OK!
     ```
-    ansible-playbook --connection=local --inventory localhost, my_own_playbook.yml
-    ```
-- Выйдем из виртуального окружения
+- Выход из venv
     ```
     deactivate
     ```
-- Инициализируем новую коллекцию
-    ```
-    cd ..
-    ansible-galaxy collection init my_own_namespace.yandex_cloud_elk
+- Инициализация новой коллекции
+    ```bash
+root@vkvm:/home/vk/tmp_ansible/ansible# cd ..
+root@vkvm:/home/vk/tmp_ansible# ansible-galaxy collection init my_own_namespace.vk_collection
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
+you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
+source of code and can become unstable at any point.
+- Collection my_own_namespace.vk_collection was created successfully
     ```
 - Скопируем в коллекцию созданный модуль
-    ```
-    mkdir -p my_own_namespace/yandex_cloud_elk/plugins/modules
-    cp ansible/lib/ansible/modules/my_own_module.py my_own_namespace/yandex_cloud_elk/plugins/modules/
+    ```bash
+    root@vkvm:/home/vk/tmp_ansible# mkdir -p my_own_namespace/vk_collection/plugins/modules
+    root@vkvm:/home/vk/tmp_ansible# cp ansible/lib/ansible/modules/my_own_module.py my_own_namespace/vk_collection/plugins/modules/
     ```
 - Создадим роль 
+    ```bash
+    root@vkvm:/home/vk/tmp_ansible# cd my_own_namespace/vk_collection/roles/
+root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection/roles# ansible-galaxy role init my_own_role
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
+you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
+source of code and can become unstable at any point.
+- Role my_own_role was created successfully
     ```
-    cd my_own_namespace/yandex_cloud_elk/roles/
-    ansible-galaxy role init my_own_role
-    ```
-- Изменим файл переменных у роли в файле main.yml
-    ```
-    nano my_own_namespace/yandex_cloud_elk/roles/defaults/main.yml
+- Меняем файл переменных по умолчанию в файле `defaults/main.yml`
+    ```yml
     ---
     # defaults file for my_own_role
-    path: './test_file.txt'
-    content: "test content"
+    path: './vk_test_role_file.txt'
+    content: "test content for own role test"
     ```
-- Изменим задачи у роли в файле main.yml
+-  Меняем задачи в файле `tasks/main.yml`
     ```
     nano my_own_namespace/yandex_cloud_elk/tasks/main.yml
     ---
@@ -379,9 +406,8 @@ Everything is OK! Test passed.
         path: "{{ path }}"
         content: "{{ content }}"
     ```
-- Создадим файл my_own_playbook.yml для проигрывания роли 
-    ```
-    nano my_own_namespace/yandex_cloud_elk/my_own_playbook.yml
+- Создадим плейбук `my_own_playbook.yml` для проигрывания роли 
+    ```yml
     ---
     - name: Import my_own_role
       hosts: localhost
@@ -389,39 +415,89 @@ Everything is OK! Test passed.
         - role: my_own_role
     ```
 - Проверим модуль в коллекции
-    ```
-    ANSIBLE_LIBRARY=./plugins/modules ansible -m my_own_module -a 'path=./test_file.txt content="test content"' localhost
+    ```bash
+    root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ANSIBLE_LIBRARY=./plugins/modules
+root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ansible -m my_own_module -a 'path=./collection_test_file.txt content="My collection test content!!!"' localhost
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
+you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
+source of code and can become unstable at any point.
+[WARNING]: No inventory was parsed, only implicit localhost is available
+localhost | CHANGED => {
+    "changed": true
+}
+root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# cat collection_test_file.txt 
+My collection test content!!!
     ```
 - Проиграем playbook
-    ```
-    ANSIBLE_LIBRARY=./plugins/modules ansible-playbook --connection=local --inventory localhost, my_own_playbook.yml
+    ```bash
+    root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ansible-playbook --connection=local --inventory localhost my_own_playbook.yml
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
+you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
+source of code and can become unstable at any point.
+[WARNING]: Unable to parse /home/vk/tmp_ansible/my_own_namespace/vk_collection/localhost as an inventory
+source
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does
+not match 'all'
+
+PLAY [Import my_own_role] **********************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************
+ok: [localhost]
+
+TASK [my_own_role : Create file] ***************************************************************************
+changed: [localhost]
+
+PLAY RECAP *************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
     ```
 - Создадим архив коллекции
+    ```bash
+    root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ansible-galaxy collection build
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
+you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
+source of code and can become unstable at any point.
+Created collection for my_own_namespace.vk_collection at /home/vk/tmp_ansible/my_own_namespace/vk_collection/my_own_namespace-vk_collection-1.0.0.tar.gz
     ```
-    ansible-galaxy collection build
-    ```
-- Создадим вторую директорию для коллекции
+- Создадим пробную директорию для коллекции
     ```
     cd ..
     mkdir tmp
     cd tmp
     ```
-- Скопируем архив коллекции в новую директорию
+- Установим коллекцию из архива  в новую директорию для тестирования
+    ```bash
+root@vkvm:/home/vk/tmp_ansible# mkdir collection_test 
+root@vkvm:/home/vk/tmp_ansible# cd collection_test/
+root@vkvm:/home/vk/tmp_ansible/collection_test# cp ../my_own_namespace/vk_collection/my_own_namespace-vk_collection-1.0.0.tar.gz .
+root@vkvm:/home/vk/tmp_ansible/collection_test# ansible-galaxy collection install my_own_namespace-vk_collection-1.0.0.tar.gz 
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
+you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
+source of code and can become unstable at any point.
+Starting galaxy collection install process
+Process install dependency map
+Starting collection install process
+Installing 'my_own_namespace.vk_collection:1.0.0' to '/root/.ansible/collections/ansible_collections/my_own_namespace/vk_collection'
+my_own_namespace.vk_collection:1.0.0 was installed successfully
     ```
-    cp ../my_own_namespace/yandex_cloud_elk/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz .
-    ```
-- Установим коллекцию из архива
-    ```
-    ansible-galaxy collection install my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
-    Installing 'my_own_namespace.yandex_cloud_elk:1.0.0' to '/root/.ansible/collections/ansible_collections/my_own_namespace/yandex_cloud_elk'
-    ```
-- Проиграем playbook из коллекции
-    ```
-    cd /root/.ansible/collections/ansible_collections/my_own_namespace/yandex_cloud_elk
-    ansible-playbook --connection=local --inventory localhost, my_own_playbook.yml
-    ```
-- Проверим, что файл появился
-    ```
-    cat test_file.txt
-    test content
+- Проиграем playbook из коллекции, проверим что нужный файл появился
+    ```bash
+    root@vkvm:~/.ansible/collections/ansible_collections/my_own_namespace/vk_collection# ansible-playbook --connection=local --inventory localhost, my_own_playbook.yml
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
+you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
+source of code and can become unstable at any point.
+
+PLAY [Import my_own_role] **********************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************
+ok: [localhost]
+
+TASK [my_own_namespace.vk_collection.my_own_role : Create file] ********************************************
+ok: [localhost]
+
+PLAY RECAP *************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+root@vkvm:~/.ansible/collections/ansible_collections/my_own_namespace/vk_collection# cat collection_test_file.txt 
+My collection test content!!!
     ```
