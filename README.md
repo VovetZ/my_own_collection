@@ -323,10 +323,10 @@ Done!
    ```
 {"changed": true, "invocation": {"module_args": {"path": "vk_test_file.txt", "content": "Everything is OK! Test passed."}}}
 
-- Файл создался!
+- Файл создался
     ```bash
   (venv) root@vkvm:/home/vk/tmp_ansible/ansible# cat vk_test_file.txt 
-Everything is OK! Test passed.
+        Everything is OK! Test passed.
     ```
 - Создадим playbook test_playbook.yml
     ```yml
