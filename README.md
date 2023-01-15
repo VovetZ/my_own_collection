@@ -407,7 +407,6 @@ source of code and can become unstable at any point.
 -  Меняем задачи в файле `tasks/main.yml`
 
 ```yml
-    nano my_own_namespace/yandex_cloud_elk/tasks/main.yml
     ---
     # tasks file for my_own_role
     - name: Create file
