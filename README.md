@@ -318,7 +318,7 @@ Done!
    }
     ```
 - Проверим модуль локально 
-    ```bash
+    ```
    (venv) root@vkvm:/home/vk/tmp_ansible/ansible# python3 -m ansible.modules.my_own_module load.json
 {"changed": true, "invocation": {"module_args": {"path": "vk_test_file.txt", "content": "Everything is OK! Test passed."}}}
     ```
