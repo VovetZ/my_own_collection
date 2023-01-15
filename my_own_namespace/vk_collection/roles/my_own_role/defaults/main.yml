@@ -1,0 +1,4 @@
+---
+# defaults file for my_own_role
+    path: './vk_test_role_file.txt'
+    content: "test content for own role test"
