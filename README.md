@@ -320,16 +320,16 @@ Done!
 - Проверим модуль локально 
     ```bash
    (venv) root@vkvm:/home/vk/tmp_ansible/ansible# python3 -m ansible.modules.my_own_module load.json
+   {"changed": true, "invocation": {"module_args": {"path": "vk_test_file.txt", "content": "Everything is OK! Test passed."}}}
    ```
-{"changed": true, "invocation": {"module_args": {"path": "vk_test_file.txt", "content": "Everything is OK! Test passed."}}}
-
 - Файл создался
     ```bash
   (venv) root@vkvm:/home/vk/tmp_ansible/ansible# cat vk_test_file.txt 
         Everything is OK! Test passed.
     ```
-- Создадим playbook test_playbook.yml
-    ```yml
+- Создадим playbook `test_playbook.yml`
+
+```yaml
 ---
 - name: Import my_own_module 
   hosts: localhost
@@ -338,7 +338,8 @@ Done!
     my_own_module:
       path: './vk_playbook_test_file.txt'
       content: "Playbook test content. OK!"
-    ```
+```
+
 - Проиграем playbook и проверим результат 
     ```bash
     (venv) root@vkvm:/home/vk/tmp_ansible/ansible# ansible-playbook --connection=local --inventory localhost test_playbook.yml 
