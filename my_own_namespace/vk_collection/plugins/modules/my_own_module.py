@@ -58,7 +58,7 @@ def run_module():
 
     if module.check_mode:
         module.exit_json(**result)
-
+    
     Path = module.params['path']
     newContent = module.params['content']
 
@@ -76,10 +76,10 @@ def run_module():
     except Exception as e:
         errorMessage = str(e)
         result['changed'] = False
-        result['message'] = "Error writing new content to" + Path
+        result['message'] = "Error writing new content to " + Path
     else:
         result['changed'] = True
-        result['message'] = "File " + Path + "created/overwrited with new content"
+        result['message'] = "File " + Path + " created/overwrited with new content"
     
     if len(errorMessage) > 0:
         module.fail_json(msg=errorMessage, **result)
