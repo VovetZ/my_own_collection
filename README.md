@@ -226,20 +226,7 @@ The following NEW packages will be installed:
 Need to get 2 473 kB of archives.
 After this operation, 2 882 kB of additional disk space will be used.
 Do you want to continue? [Y/n] y
-Get:1 http://archive.ubuntu.com/ubuntu jammy/universe amd64 python3-pip-whl all 22.0.2+dfsg-1 [1 679 kB]
-Get:2 http://archive.ubuntu.com/ubuntu jammy/universe amd64 python3-setuptools-whl all 59.6.0-1.2 [788 kB]
-Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 python3.10-venv amd64 3.10.6-1~22.04.2 [5 722 B]
-Fetched 2 473 kB in 1s (2 115 kB/s)     
-Selecting previously unselected package python3-pip-whl.
-(Reading database ... 265528 files and directories currently installed.)
-Preparing to unpack .../python3-pip-whl_22.0.2+dfsg-1_all.deb ...
-Unpacking python3-pip-whl (22.0.2+dfsg-1) ...
-Selecting previously unselected package python3-setuptools-whl.
-Preparing to unpack .../python3-setuptools-whl_59.6.0-1.2_all.deb ...
-Unpacking python3-setuptools-whl (59.6.0-1.2) ...
-Selecting previously unselected package python3.10-venv.
-Preparing to unpack .../python3.10-venv_3.10.6-1~22.04.2_amd64.deb ...
-Unpacking python3.10-venv (3.10.6-1~22.04.2) ...
+..........................................
 Setting up python3-setuptools-whl (59.6.0-1.2) ...
 Setting up python3-pip-whl (22.0.2+dfsg-1) ...
 Setting up python3.10-venv (3.10.6-1~22.04.2) ...
@@ -247,55 +234,12 @@ root@vkvm:/home/vk/tmp_ansible/ansible# python3 -m venv venv
 root@vkvm:/home/vk/tmp_ansible/ansible# . venv/bin/activate
 (venv) root@vkvm:/home/vk/tmp_ansible/ansible# pip install -r requirements.txt 
 Ignoring importlib_resources: markers 'python_version < "3.10"' don't match your environment
-Collecting jinja2>=3.0.0
-  Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 KB 1.2 MB/s eta 0:00:00
-Collecting PyYAML>=5.1
-  Downloading PyYAML-6.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (682 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 682.2/682.2 KB 4.2 MB/s eta 0:00:00
-Collecting cryptography
-  Downloading cryptography-39.0.0-cp36-abi3-manylinux_2_28_x86_64.whl (4.2 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.2/4.2 MB 9.2 MB/s eta 0:00:00
-Collecting packaging
-  Downloading packaging-23.0-py3-none-any.whl (42 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.7/42.7 KB 6.0 MB/s eta 0:00:00
-Collecting resolvelib<0.10.0,>=0.5.3
-  Downloading resolvelib-0.9.0-py2.py3-none-any.whl (16 kB)
-Collecting MarkupSafe>=2.0
-  Downloading MarkupSafe-2.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
-Collecting cffi>=1.12
-  Downloading cffi-1.15.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (441 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 441.8/441.8 KB 8.9 MB/s eta 0:00:00
-Collecting pycparser
-  Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.7/118.7 KB 14.5 MB/s eta 0:00:00
+...................................
 Installing collected packages: resolvelib, PyYAML, pycparser, packaging, MarkupSafe, jinja2, cffi, cryptography
 Successfully installed MarkupSafe-2.1.1 PyYAML-6.0 cffi-1.15.1 cryptography-39.0.0 jinja2-3.1.2 packaging-23.0 pycparser-2.21 resolvelib-0.9.0
 (venv) root@vkvm:/home/vk/tmp_ansible/ansible# . hacking/env-setup
 running egg_info
-creating lib/ansible_core.egg-info
-writing lib/ansible_core.egg-info/PKG-INFO
-writing dependency_links to lib/ansible_core.egg-info/dependency_links.txt
-writing entry points to lib/ansible_core.egg-info/entry_points.txt
-writing requirements to lib/ansible_core.egg-info/requires.txt
-writing top-level names to lib/ansible_core.egg-info/top_level.txt
-writing manifest file 'lib/ansible_core.egg-info/SOURCES.txt'
-reading manifest file 'lib/ansible_core.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-warning: no files found matching 'SYMLINK_CACHE.json'
-warning: no previously-included files found matching 'docs/docsite/rst_warnings'
-warning: no previously-included files found matching 'docs/docsite/rst/conf.py'
-warning: no previously-included files found matching 'docs/docsite/rst/index.rst'
-warning: no previously-included files found matching 'docs/docsite/rst/dev_guide/index.rst'
-warning: no previously-included files matching '*' found under directory 'docs/docsite/_build'
-warning: no previously-included files matching '*.pyc' found under directory 'docs/docsite/_extensions'
-warning: no previously-included files matching '*.pyo' found under directory 'docs/docsite/_extensions'
-warning: no files found matching '*.ps1' under directory 'lib/ansible/modules/windows'
-warning: no files found matching '*.yml' under directory 'lib/ansible/modules'
-warning: no files found matching 'validate-modules' under directory 'test/lib/ansible_test/_util/controller/sanity/validate-modules'
-adding license file 'COPYING'
-writing manifest file 'lib/ansible_core.egg-info/SOURCES.txt'
-
+........................................
 Setting up Ansible to run out of checkout...
 
 PATH=/home/vk/tmp_ansible/ansible/bin:/home/vk/tmp_ansible/ansible/venv/bin:/root/yandex-cloud/bin:/root/yandex-cloud/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
@@ -305,7 +249,6 @@ MANPATH=/home/vk/tmp_ansible/ansible/docs/man:/usr/local/man:/usr/local/share/ma
 Remember, you may wish to specify your host file with -i
 
 Done!
-
 ```
 
 - В виртуальном окружении создадим новый `my_own_module.py` файл
@@ -317,19 +260,21 @@ Done!
    {
     "ANSIBLE_MODULE_ARGS": {
         "path": "vk_test_file.txt",
-        "content": "Everything is OK! Test passed."
+        "content": "Everything is OK!!!!!!"
         }
    }
     ```
 - Проверим модуль локально 
     ```bash
    (venv) root@vkvm:/home/vk/tmp_ansible/ansible# python3 -m ansible.modules.my_own_module load.json
-   {"changed": true, "invocation": {"module_args": {"path": "vk_test_file.txt", "content": "Everything is OK! Test passed."}}}
+
+{"changed": true, "message": "File vk_test_file.txt created/overwrited with new content", "invocation": {"module_args": {"path": "vk_test_file.txt", "content": "Everything is OK!!!!!!"}}}
+
    ```
 - Файл создался
 ```bash
   (venv) root@vkvm:/home/vk/tmp_ansible/ansible# cat vk_test_file.txt 
-        Everything is OK! Test passed.
+        Everything is OK!!!!!!!
 ```
 - Создадим playbook `test_playbook.yml`
 
@@ -347,24 +292,24 @@ Done!
 - Проиграем playbook и проверим результат 
 ```bash
 (venv) root@vkvm:/home/vk/tmp_ansible/ansible# ansible-playbook --connection=local --inventory localhost test_playbook.yml 
-[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
-you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
-source of code and can become unstable at any point.
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you
+are modifying the Ansible engine, or trying out features under development. This is a rapidly changing source
+of code and can become unstable at any point.
 [WARNING]: Unable to parse /home/vk/tmp_ansible/ansible/localhost as an inventory source
 [WARNING]: No inventory was parsed, only implicit localhost is available
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does
 not match 'all'
 
-PLAY [Import my_own_module] ********************************************************************************
+PLAY [Import my_own_module] ***********************************************************************************
 
-TASK [Gathering Facts] *************************************************************************************
+TASK [Gathering Facts] ****************************************************************************************
 ok: [localhost]
 
-TASK [Run my_own_module] ***********************************************************************************
-changed: [localhost]
+TASK [Run my_own_module] **************************************************************************************
+ok: [localhost]
 
-PLAY RECAP *************************************************************************************************
-localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+PLAY RECAP ****************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 (venv) root@vkvm:/home/vk/tmp_ansible/ansible# cat vk_playbook_test_file.txt 
 Playbook test content. OK!
 ```
@@ -432,87 +377,93 @@ source of code and can become unstable at any point.
 - Проверим модуль в коллекции
 
 ```bash
-    root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ANSIBLE_LIBRARY=./plugins/modules
-root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ansible -m my_own_module -a 'path=./collection_test_file.txt content="My collection test content!!!"' localhost
-[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
-you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
-source of code and can become unstable at any point.
-[WARNING]: No inventory was parsed, only implicit localhost is available
+root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ANSIBLE_LIBRARY=./plugins/modules
+root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection/roles# ansible -m my_own_module -a 'path=./collection_test_file.txt content="My collection test content!!!"' localhost
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you
+are modifying the Ansible engine, or trying out features under development. This is a rapidly changing source
+of code and can become unstable at any point.
 localhost | CHANGED => {
-    "changed": true
+    "changed": true,
+    "message": "File ./collection_test_file.txt created/overwrited with new content"
 }
-root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# cat collection_test_file.txt 
-My collection test content!!!
 ```
 
 - Проиграем playbook
 
 ```bash
-    root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ansible-playbook --connection=local --inventory localhost my_own_playbook.yml
-[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
-you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
-source of code and can become unstable at any point.
+root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ansible-playbook --connection=local --inventory localhost my_own_playbook.yml
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you
+are modifying the Ansible engine, or trying out features under development. This is a rapidly changing source
+of code and can become unstable at any point.
 [WARNING]: Unable to parse /home/vk/tmp_ansible/my_own_namespace/vk_collection/localhost as an inventory
 source
 [WARNING]: No inventory was parsed, only implicit localhost is available
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does
 not match 'all'
 
-PLAY [Import my_own_role] **********************************************************************************
+PLAY [Import my_own_role] *************************************************************************************
 
-TASK [Gathering Facts] *************************************************************************************
+TASK [Gathering Facts] ****************************************************************************************
 ok: [localhost]
 
-TASK [my_own_role : Create file] ***************************************************************************
-changed: [localhost]
+TASK [my_own_role : Create file] ******************************************************************************
+ok: [localhost]
 
-PLAY RECAP *************************************************************************************************
-localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+PLAY RECAP ****************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 - Создадим архив коллекции
 ```bash
-    root@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ansible-galaxy collection build
-[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
-you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
-source of code and can become unstable at any point.
+rroot@vkvm:/home/vk/tmp_ansible/my_own_namespace/vk_collection# ansible-galaxy collection build --force
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you
+are modifying the Ansible engine, or trying out features under development. This is a rapidly changing source
+of code and can become unstable at any point.
 Created collection for my_own_namespace.vk_collection at /home/vk/tmp_ansible/my_own_namespace/vk_collection/my_own_namespace-vk_collection-1.0.0.tar.gz
 ```
 - Установим коллекцию из архива  в новую директорию для тестирования
 
 ```bash
-root@vkvm:/home/vk/tmp_ansible# mkdir collection_test 
-root@vkvm:/home/vk/tmp_ansible# cd collection_test/
-root@vkvm:/home/vk/tmp_ansible/collection_test# cp ../my_own_namespace/vk_collection/my_own_namespace-vk_collection-1.0.0.tar.gz .
-root@vkvm:/home/vk/tmp_ansible/collection_test# ansible-galaxy collection install my_own_namespace-vk_collection-1.0.0.tar.gz 
-[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
-you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
-source of code and can become unstable at any point.
+root@vkvm:/home/vk/tmp_ansible# mkdir collection_test_2
+root@vkvm:/home/vk/tmp_ansible# cd collection_test_2
+root@vkvm:/home/vk/tmp_ansible/collection_test_2# cp ../my_own_namespace/vk_collection/my_own_namespace-vk_collection-1.0.0.tar.gz .
+root@vkvm:/home/vk/tmp_ansible/collection_test_2# ansible-galaxy collection install my_own_namespace-vk_collection-1.0.0.tar.gz 
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you
+are modifying the Ansible engine, or trying out features under development. This is a rapidly changing source
+of code and can become unstable at any point.
+Starting galaxy collection install process
+Nothing to do. All requested collections are already installed. If you want to reinstall them, consider using `--force`.
+root@vkvm:/home/vk/tmp_ansible/collection_test_2# ansible-galaxy collection install my_own_namespace-vk_collection-1.0.0.tar.gz --force
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you
+are modifying the Ansible engine, or trying out features under development. This is a rapidly changing source
+of code and can become unstable at any point.
 Starting galaxy collection install process
 Process install dependency map
 Starting collection install process
 Installing 'my_own_namespace.vk_collection:1.0.0' to '/root/.ansible/collections/ansible_collections/my_own_namespace/vk_collection'
 my_own_namespace.vk_collection:1.0.0 was installed successfully
-    ```
+root@vkvm:/home/vk/tmp_ansible/collection_test_2# cd ~/.ansible/collections/ansible_collections/my_own_namespace/vk_collection
+root@vkvm:~/.ansible/collections/ansible_collections/my_own_namespace/vk_collection# 
+```
 - Проиграем playbook из коллекции, проверим что нужный файл появился
 
 ```bash
-    root@vkvm:~/.ansible/collections/ansible_collections/my_own_namespace/vk_collection# ansible-playbook --connection=local --inventory localhost, my_own_playbook.yml
-[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if
-you are modifying the Ansible engine, or trying out features under development. This is a rapidly changing
-source of code and can become unstable at any point.
+root@vkvm:~/.ansible/collections/ansible_collections/my_own_namespace/vk_collection# ansible-playbook --connection=local --inventory localhost, my_own_playbook.yml
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you
+are modifying the Ansible engine, or trying out features under development. This is a rapidly changing source
+of code and can become unstable at any point.
 
-PLAY [Import my_own_role] **********************************************************************************
+PLAY [Import my_own_role] *************************************************************************************
 
-TASK [Gathering Facts] *************************************************************************************
+TASK [Gathering Facts] ****************************************************************************************
 ok: [localhost]
 
-TASK [my_own_namespace.vk_collection.my_own_role : Create file] ********************************************
+TASK [my_own_namespace.vk_collection.my_own_role : Create file] ***********************************************
 ok: [localhost]
 
-PLAY RECAP *************************************************************************************************
+PLAY RECAP ****************************************************************************************************
 localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 root@vkvm:~/.ansible/collections/ansible_collections/my_own_namespace/vk_collection# cat collection_test_file.txt 
 My collection test content!!!
-    ```
+```
