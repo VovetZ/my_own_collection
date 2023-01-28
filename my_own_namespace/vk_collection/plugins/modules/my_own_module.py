@@ -59,20 +59,34 @@ def run_module():
     if module.check_mode:
         module.exit_json(**result)
 
-    if not(os.path.exists(module.params['path']) 
-    and os.path.isfile(module.params['path'])
-    and open(module.params['path'],'r').read() == module.params['content']):
-        try:
-            with open(module.params['path'], 'w') as file:
-                file.write(module.params['content'])
-                result['changed'] = True
-        except Exception as e:
-            module.fail_json(msg=f"Something gone wrong: {e}", **result)
+    Path = module.params['path']
+    newContent = module.params['content']
 
-    if module.params['path'] == 'fail me':
-        module.fail_json(msg='You requested this to fail', **result)
+    if os.path.isfile(Path):
+        fileContent = open(Path, "r").read()
+        if fileContent == newContent:
+            result['changed'] = False
+            result['message'] = "File is already up to date"
+            module.exit_json(**result)
+    
+    errorMessage = ""
+    try:
+        file = open(Path, "w")
+        file.writelines(newContent)
+    except Exception as e:
+        errorMessage = str(e)
+        result['changed'] = False
+        result['message'] = "Error writing new content to" + Path
+    else:
+        result['changed'] = True
+        result['message'] = "File " + Path + "created/overwrited with new content"
+    
+    if len(errorMessage) > 0:
+        module.fail_json(msg=errorMessage, **result)
+    else:
+        file.close
+        module.exit_json(**result)
 
-    module.exit_json(**result)
 
 def main():
     run_module()
